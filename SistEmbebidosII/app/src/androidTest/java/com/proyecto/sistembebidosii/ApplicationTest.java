@@ -1,4 +1,4 @@
-package com.proyecto.proyectofalafemi;
+package com.proyecto.sistembebidosii;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
