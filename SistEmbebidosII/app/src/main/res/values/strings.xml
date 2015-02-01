@@ -3,7 +3,6 @@
 
     <string name="app_name">Sistemas Embebidos II</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Ajustes</string>
-    <string name="strBuscar">Buscar</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
