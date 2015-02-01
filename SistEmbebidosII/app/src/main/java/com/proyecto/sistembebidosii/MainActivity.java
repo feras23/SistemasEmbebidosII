@@ -30,9 +30,11 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_menu) {
+            System.out.println("Se presionó el menú");
             return true;
-        }
+        }else if (id == R.id.action_search)
+            System.out.println("Se presionó la búsqueda");
 
         return super.onOptionsItemSelected(item);
     }
