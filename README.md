@@ -1,7 +1,10 @@
 # SistemasEmbebidosII
 Aplicación en Android para la clase de Sistemas Embebidos II
 
-Laura
-Fernando
-Fanny
-Miguel
+Laura Mejía
+
+Fernando Perez
+
+Fanny Vega
+
+Miguel Martínez
