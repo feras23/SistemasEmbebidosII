@@ -1,8 +1,10 @@
 package com.proyecto.sistembebidosii;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.view.MenuItem;
 
 
@@ -37,5 +39,10 @@ public class MainActivity extends ActionBarActivity {
             System.out.println("Se presionó la búsqueda");
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void lanzar (View view) {
+        Intent i = new Intent (this, Activity2.class);
+        startActivity(i);
     }
 }
