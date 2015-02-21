@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="text">Agregar nueva alarma</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="action_search">Buscar</string>
+    <string name="title_activity_main">MainActivity</string>
 
 </resources>
