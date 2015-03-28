@@ -45,6 +45,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/analogClock"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/imageButton"
+        android:layout_toEndOf="@+id/imageButton"
+        android:layout_marginTop="83dp" />
 
 </RelativeLayout>
