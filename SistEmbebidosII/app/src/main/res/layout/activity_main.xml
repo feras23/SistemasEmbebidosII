@@ -28,7 +28,7 @@
             android:text="@string/button_mapa"
             android:drawableTop="@drawable/mapa"
             android:clickable="true"
-            android:onClick="lanzar"
+            android:onClick="opcMapa"
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center"
@@ -48,7 +48,7 @@
             android:text="@string/button_ajustes"
             android:drawableTop="@drawable/ajustes"
             android:clickable="true"
-            android:onClick="lanzar"
+            android:onClick="opcAjustes"
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center"/>

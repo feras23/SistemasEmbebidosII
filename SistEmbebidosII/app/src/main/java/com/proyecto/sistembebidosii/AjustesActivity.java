@@ -6,19 +6,15 @@ import android.view.Menu;
 
 
 
-public class Activity2 extends ActionBarActivity {
-
-
+public class AjustesActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activity2);
+        setContentView(R.layout.activity_ajustes);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity2, menu);
+        getMenuInflater().inflate(R.menu.menu_ajustes, menu);
         return true;
     }
-
-
 }
