@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:text="@string/button_ubicacion"
+            android:drawableTop="@drawable/ubicacion"
+            android:clickable="true"
+            android:onClick="opcUbicacion"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingTop="50dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:text="@string/button_mapa"
+            android:drawableTop="@drawable/mapa"
+            android:clickable="true"
+            android:onClick="lanzar"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingTop="50dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:text="@string/button_ajustes"
+            android:drawableTop="@drawable/ajustes"
+            android:clickable="true"
+            android:onClick="lanzar"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>
