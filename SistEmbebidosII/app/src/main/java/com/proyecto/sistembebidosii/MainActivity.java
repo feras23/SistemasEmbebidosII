@@ -45,4 +45,9 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent (this, Activity2.class);
         startActivity(i);
     }
+
+    public void opcUbicacion (View view) {
+        Intent i = new Intent (this, Ubicacion.class);
+        startActivity(i);
+    }
 }
