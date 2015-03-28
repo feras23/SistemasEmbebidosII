@@ -19,8 +19,16 @@
         </activity>
         <activity
             android:name=".Activity2"
+<<<<<<< HEAD
             android:label="@string/action_settings"
             android:parentActivityName=".MainActivity" >
+=======
+            android:label="@string/title_activity_activity2"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+>>>>>>> origin/DevelopmentFanny
         </activity>
     </application>
 </manifest>

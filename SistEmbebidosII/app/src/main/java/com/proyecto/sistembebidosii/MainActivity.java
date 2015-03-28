@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 
-
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -15,14 +14,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+      public boolean onOptionsMenu(Menu menu) {
+          getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+        }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -34,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_menu) {
             System.out.println("Se presionó el menú");
+        if (id == R.id.action_settings) {
+            System.out.println("Se presionó configuración");
             return true;
         }else if (id == R.id.action_search)
             System.out.println("Se presionó la búsqueda");
@@ -45,4 +42,12 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent (this, Activity2.class);
         startActivity(i);
     }
+        public void lanzar (View view) {
+            Intent i = new Intent (this, Activity2.class);
+            startActivity(i);
+        }
+
+
+
+>>>>>>> origin/DevelopmentFanny
 }
