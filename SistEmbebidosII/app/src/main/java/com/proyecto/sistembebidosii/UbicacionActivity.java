@@ -7,10 +7,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 
-/**
- * Created by Fernando Perez on 28/03/2015.
- */
-public class Ubicacion extends ActionBarActivity{
+
+public class UbicacionActivity extends ActionBarActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

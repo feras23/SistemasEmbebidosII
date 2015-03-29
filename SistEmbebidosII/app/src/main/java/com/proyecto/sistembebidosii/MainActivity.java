@@ -41,13 +41,18 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void lanzar (View view) {
-        Intent i = new Intent (this, Activity2.class);
+    public void opcMapa (View view) {
+        Intent i = new Intent (this, MapaActivity.class);
+        startActivity(i);
+    }
+
+    public void opcAjustes (View view) {
+        Intent i = new Intent (this, AjustesActivity.class);
         startActivity(i);
     }
 
     public void opcUbicacion (View view) {
-        Intent i = new Intent (this, Ubicacion.class);
+        Intent i = new Intent (this, UbicacionActivity.class);
         startActivity(i);
     }
 }
