@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wake Me Up !!</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="button_ajustes">Ajustes</string>
+    <string name="button_mapa">Mapa</string>
+    <string name="button_agregar">Agregar</string>
+    <string name="button_ubicacion">Ubicaciones</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_mapa">Mapa</string>
+    <string name="action_ubicacion">Ubicacion</string>
+    <string name="button_send">Enviar</string>
+    <string name="title_activity_agregar">AgregarActivity</string>
+
+</resources>
