@@ -24,4 +24,9 @@ public class UbicacionActivity extends ActionBarActivity{
         return true;
     }
 
+    public void opcAgregar (View view) {
+        Intent i = new Intent (this, AgregarActivity.class);
+        startActivity(i);
+    }
+
 }
