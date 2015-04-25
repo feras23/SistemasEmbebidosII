@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Wake Me Up !!</string>
+    <string name="app_name">Wake Me App  !!</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Ajustes</string>
     <string name="button_ajustes">Ajustes</string>
