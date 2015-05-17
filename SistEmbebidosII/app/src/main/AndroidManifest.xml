@@ -56,6 +56,13 @@
             android:name=".AgregarActivity"
             android:label="@string/title_activity_agregar" >
         </activity>
+
+        <activity android:name=".OpcionesActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_opciones">
+
+        </activity>
     </application>
 
 </manifest>

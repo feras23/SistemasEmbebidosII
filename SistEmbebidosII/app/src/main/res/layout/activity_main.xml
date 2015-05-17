@@ -41,17 +41,17 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <TextView
+       <!-- <TextView
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
             android:text="@string/button_ajustes"
             android:drawableTop="@drawable/ajustes"
             android:clickable="true"
-            android:onClick="opcAjustes"
+            android:onClick="opcOpciones"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:gravity="center"/>
+            android:gravity="center"/>-->
 
     </LinearLayout>
 </LinearLayout>

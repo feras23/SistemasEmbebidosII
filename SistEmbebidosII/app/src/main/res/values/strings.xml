@@ -13,5 +13,21 @@
     <string name="action_ubicacion">Ubicacion</string>
     <string name="button_send">Enviar</string>
     <string name="title_activity_agregar">AgregarActivity</string>
+    <string name="title_activity_opciones">OpcionesActivity</string>
+    <string-array name="pais">
+        <item>España</item>
+        <item>Francia</item>
+        <item>Alemania</item>
+    </string-array>
+    <string-array name="codigopais">
+        <item>ESP</item>
+        <item>FRA</item>
+        <item>ALE</item>
+    </string-array>
+    <string name="pref_mute">Mute</string>
+    <string name="pref_mute_summ">Disable all the sound in the application</string>
+    <string name="pref_tone">Ringtone</string>
+    <string name="pref_tone_summ">Set ringtone</string>
+    <string name="menu_settings">Settings</string>
 
 </resources>

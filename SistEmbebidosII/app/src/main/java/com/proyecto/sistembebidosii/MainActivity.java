@@ -32,27 +32,31 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_menu) {
-            System.out.println("Se presionó el menú");
-            return true;
-        }else if (id == R.id.action_search)
-            System.out.println("Se presionó la búsqueda");
+        if (id == R.id.action_settings) {
+            Intent i = new Intent(this, OpcionesActivity.class);
+            startActivity(i);
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void opcMapa (View view) {
-        Intent i = new Intent (this, MapaActivity.class);
+    public void opcMapa(View view) {
+        Intent i = new Intent(this, MapaActivity.class);
         startActivity(i);
     }
 
-    public void opcAjustes (View view) {
-        Intent i = new Intent (this, AjustesActivity.class);
+    public void opcAjustes(View view) {
+        Intent i = new Intent(this, AjustesActivity.class);
         startActivity(i);
     }
 
-    public void opcUbicacion (View view) {
-        Intent i = new Intent (this, UbicacionActivity.class);
+    public void opcUbicacion(View view) {
+        Intent i = new Intent(this, UbicacionActivity.class);
         startActivity(i);
     }
+
+    /*public void opcOpciones(View view) {
+        Intent i = new Intent(this, OpcionesActivity.class);
+        startActivity(i);
+    }*/
 }

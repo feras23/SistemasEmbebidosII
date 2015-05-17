@@ -1,0 +1,18 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Ajustes generales">
+        <RingtonePreference
+            android:key="pref_tone"
+            android:title="@string/pref_tone"
+            android:summary="@string/pref_tone_summ"
+            android:showDefault="true"
+            android:showSilent="true"/>
+        <CheckBoxPreference
+            android:key="vibrar"
+            android:title="Vibrar"
+            android:summary="Vibracion cuando suene la alarma" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
