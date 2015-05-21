@@ -52,11 +52,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAQxyCC-RsTh1st0fAxX6gE02LT8NosdDk" />
 
-        <activity
-            android:name=".AgregarActivity"
-            android:label="@string/title_activity_agregar" >
-        </activity>
-
         <activity android:name=".OpcionesActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"

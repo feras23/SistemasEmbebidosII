@@ -3,23 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <item android:id="@+id/action_menu"
+    <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
-        app:showAsAction="ifRoom">
-
-        <menu>
-            <item android:id="@+id/SubMenuMain"
-                android:title=""
-                app:showAsAction="always"
-                app:actionLayout="@layout/sub_menu"/>
-        </menu>
-
+        app:showAsAction="always">
     </item>
 
     <item android:id="@+id/switchOnOff"
         app:actionLayout="@layout/switch_layout"
-        android:title=""
+        android:title="switch"
         app:showAsAction="always"/>
 
 </menu>
