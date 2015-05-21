@@ -1,16 +1,5 @@
 package com.proyecto.sistembebidosii;
 
-import android.media.AudioManager;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.SeekBar;
-import android.widget.TextView;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;

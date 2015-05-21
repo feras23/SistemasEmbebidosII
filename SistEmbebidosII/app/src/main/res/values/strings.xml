@@ -29,5 +29,8 @@
     <string name="pref_tone">Ringtone</string>
     <string name="pref_tone_summ">Set ringtone</string>
     <string name="menu_settings">Settings</string>
+    <string name="button_aceptar">Aceptar</string>
+    <string name="button_cancelar">Cancelar</string>
+    <string name="txt_nombreLugar">Nombra la Ubicacion</string>
 
 </resources>
