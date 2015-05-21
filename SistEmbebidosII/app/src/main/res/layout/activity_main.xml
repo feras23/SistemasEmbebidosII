@@ -3,55 +3,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffffff">
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:text="@string/button_ubicacion"
+        android:drawableTop="@drawable/ubicacion"
+        android:clickable="true"
+        android:onClick="opcUbicacion"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:paddingTop="30dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="1"
-            android:text="@string/button_ubicacion"
-            android:drawableTop="@drawable/ubicacion"
-            android:clickable="true"
-            android:onClick="opcUbicacion"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:paddingTop="50dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="1"
-            android:text="@string/button_mapa"
-            android:drawableTop="@drawable/mapa"
-            android:clickable="true"
-            android:onClick="opcMapa"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:paddingTop="50dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:text="@string/button_mapa"
+        android:drawableTop="@drawable/mapa"
+        android:clickable="true"
+        android:onClick="opcMapa"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"/>
 
-       <!-- <TextView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_weight="1"
-            android:text="@string/button_ajustes"
-            android:drawableTop="@drawable/ajustes"
-            android:clickable="true"
-            android:onClick="opcOpciones"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"/>-->
-
-    </LinearLayout>
 </LinearLayout>
