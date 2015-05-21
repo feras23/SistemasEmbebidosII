@@ -5,15 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaUbicaciones extends BaseAdapter implements ListAdapter {
+public class ListaUbicaciones extends BaseSwipeAdapter implements ListAdapter {
     private ManejadorBD bd;
     private List<Ubicacion> list = new ArrayList<Ubicacion>();
     private Context context;
@@ -40,13 +45,18 @@ public class ListaUbicaciones extends BaseAdapter implements ListAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.activity_ubicacion, null);
-        }
-        final Ubicacion  ub= list.get(position);
+    public int getSwipeLayoutResourceId(int i) {
+        return R.id.swipe;
+    }
+
+    @Override
+    public View generateView(int i, ViewGroup viewGroup) {
+            return LayoutInflater.from(context).inflate(R.layout.activity_ubicacion, null);
+    }
+
+    @Override
+    public void fillValues(final int i, final View view) {
+        final Ubicacion  ub= list.get(i);
         TextView listItemText = (TextView)view.findViewById(R.id.titUbicacion);
         listItemText.setText(ub.getTitulo());
 
@@ -67,6 +77,24 @@ public class ListaUbicaciones extends BaseAdapter implements ListAdapter {
                 }
             }
         });
-        return view;
+        ImageView btnEliminar = (ImageView) view.findViewById(R.id.btnBorrar);
+        btnEliminar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Eliminar(ub)){
+                    Toast.makeText(context,"Se elimino exitosamente.", Toast.LENGTH_LONG).show();
+                    list.remove(i);
+                    notifyDataSetChanged();
+                }else{
+                    Toast.makeText(context,"Ocurrio un error al eliminar.", Toast.LENGTH_LONG).show();
+               }
+
+            }
+        });
+    }
+
+    private boolean Eliminar(Ubicacion ub){
+        bd.eliminarUbicacion(ub);
+        return true;
     }
 }

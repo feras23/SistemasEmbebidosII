@@ -1,26 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" app:clickToClose="true" android:id="@+id/swipe" android:animateLayoutChanges="true">
 
-    <TextView
-        android:id="@+id/titUbicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:paddingLeft="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <!-- Bottom View Start-->
+    <LinearLayout
+        android:background="@color/common_signin_btn_default_background"
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ToggleButton
-        android:id="@+id/btnToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
-        android:textOn="ON "
-        android:textOff="OFF"/>
+        <ImageView
+            android:id="@+id/btnBorrar"
+            android:src="@drawable/eliminar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@color/common_signin_btn_default_background"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+        <!--What you want to show-->
+    </LinearLayout>
+    <!-- Bottom View End-->
 
-</RelativeLayout>
+    <!-- Surface View Start -->
+    <LinearLayout
+        android:padding="10dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/titUbicacion"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="8dp"
+                android:layout_weight="5"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ToggleButton
+                android:id="@+id/btnToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:textOn="ON "
+                android:textOff="OFF"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Surface View End -->
+</com.daimajia.swipe.SwipeLayout>
