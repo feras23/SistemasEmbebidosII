@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_addUbicacion"
         android:title="@string/action_ubicacion"
-        android:icon="@drawable/abc_btn_radio_to_on_mtrl_015"
+        android:icon="@drawable/agregar"
         app:showAsAction="ifRoom"/>
 
 
