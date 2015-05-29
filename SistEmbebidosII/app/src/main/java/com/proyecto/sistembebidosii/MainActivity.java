@@ -1,11 +1,16 @@
 package com.proyecto.sistembebidosii;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,8 +24,22 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        Switch swt = (Switch) menu.findItem(R.id.switchOnOff).getActionView().findViewById(R.id.switchForActionBar);
+        if(isMyServiceRunning(ServicioUbicacion.class))
+            swt.setChecked(true);
+        else
+            swt.setChecked(false);
+        swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    empezarServicio(ServicioUbicacion.TAG);
+                } else {
+                    detenerServicio(ServicioUbicacion.TAG);
+                }
+            }
+        });
         return true;
     }
 
@@ -40,18 +59,30 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    public void opcAjustes(View view) {
-        Intent i = new Intent(this, AjustesActivity.class);
-        startActivity(i);
-    }
-
     public void opcUbicacion(View view) {
         Intent i = new Intent(this, UbicacionActivity.class);
         startActivity(i);
     }
 
-    /*public void opcOpciones(View view) {
-        Intent i = new Intent(this, OpcionesActivity.class);
-        startActivity(i);
-    }*/
+    private void empezarServicio(final String tag){
+        Intent intent = new Intent(getApplicationContext(), ServicioUbicacion.class);
+        intent.addCategory(tag);
+        startService(intent);
+    }
+
+    private void detenerServicio(final String tag){
+        Intent intent = new Intent(getApplicationContext(), ServicioUbicacion.class);
+        intent.addCategory(tag);
+        stopService(intent);
+    }
+
+    public boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

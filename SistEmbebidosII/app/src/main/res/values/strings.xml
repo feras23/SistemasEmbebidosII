@@ -14,6 +14,7 @@
     <string name="button_send">Enviar</string>
     <string name="title_activity_agregar">AgregarActivity</string>
     <string name="title_activity_opciones">OpcionesActivity</string>
+    <string name="title_activity_alarma">Alarma</string>
     <string-array name="pais">
         <item>España</item>
         <item>Francia</item>
@@ -32,5 +33,7 @@
     <string name="button_aceptar">Aceptar</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="txt_nombreLugar">Nombra la Ubicacion</string>
+    <string name="stop_alarm">Parar Alarma</string>
+    <string name="arrived">Haz llegado al destino:</string>
 
 </resources>

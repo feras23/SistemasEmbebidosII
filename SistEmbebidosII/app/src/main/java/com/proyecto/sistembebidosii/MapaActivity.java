@@ -25,8 +25,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -152,7 +150,7 @@ public class MapaActivity extends Activity implements OnMapReadyCallback{
         String direccion = "No se encontró dirección";
         try {
             Geocoder geo = new Geocoder(MapaActivity.this.getApplicationContext(), Locale.getDefault());
-            List<Address> addresses = geo.getFromLocation(ubicacion.latitude, ubicacion.longitude, 0);
+            List<Address> addresses = geo.getFromLocation(ubicacion.latitude, ubicacion.longitude, 1);
             if (!addresses.isEmpty())
                 if (addresses.size() > 0) {
                     direccion = (addresses.get(0).getAddressLine(0) + ", " + addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName()).toString();

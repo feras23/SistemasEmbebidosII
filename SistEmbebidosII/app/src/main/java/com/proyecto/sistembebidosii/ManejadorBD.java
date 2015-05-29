@@ -125,16 +125,18 @@ public class ManejadorBD extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_LOCATIONS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
         cursor.close();
-        return cursor.getCount();
+        return count;
     }
 
     public int cuentaUbicacionesActivas(){
         String countQuery = "SELECT  * FROM " + TABLE_LOCATIONS + " WHERE activo = 1";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
         cursor.close();
-        return cursor.getCount();
+        return count;
     }
 
     public void actualizarUbicacion(Ubicacion ubicacion){
