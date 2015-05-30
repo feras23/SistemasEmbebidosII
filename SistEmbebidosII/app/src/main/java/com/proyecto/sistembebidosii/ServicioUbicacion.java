@@ -5,14 +5,16 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.List;
@@ -30,12 +32,13 @@ public class ServicioUbicacion extends Service {
     private static final float LOCATION_DISTANCE = 10f;
     private int cantidadUbicaciones;
     private List<Ubicacion> ubicaciones = null;
+    private double [] alarmasActivadas;
+    int contAlarma;
 
     private class LocationListener implements android.location.LocationListener{
         Location mLastLocation;
         public LocationListener(String provider)
         {
-            Log.e(TAG, "LocationListener " + provider);
             mLastLocation = new Location(provider);
         }
         @Override
@@ -83,16 +86,16 @@ public class ServicioUbicacion extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        Log.e(TAG, "onStartCommand");
         super.onStartCommand(intent, flags, startId);
         return START_STICKY;
     }
     @Override
     public void onCreate()
     {
-        Log.e(TAG, "onCreate");
         cantidadUbicaciones = 0;
+        contAlarma = 0;
         bd = new ManejadorBD(this);
+        alarmasActivadas =  new double[bd.cuentaUbicacionesActivas()];
         initializeLocationManager();
         crearNotificacion();
         try {
@@ -100,38 +103,37 @@ public class ServicioUbicacion extends Service {
                     LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[1]);
         } catch (java.lang.SecurityException ex) {
-            Log.i(TAG, "fail to request location update, ignore", ex);
+            ex.printStackTrace();
         } catch (IllegalArgumentException ex) {
-            Log.d(TAG, "network provider does not exist, " + ex.getMessage());
+            ex.printStackTrace();
         }
         try {
             mLocationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
                     mLocationListeners[0]);
         } catch (java.lang.SecurityException ex) {
-            Log.i(TAG, "fail to request location update, ignore", ex);
+            ex.printStackTrace();
         } catch (IllegalArgumentException ex) {
-            Log.d(TAG, "gps provider does not exist " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
     @Override
     public void onDestroy()
     {
         cancelarNotificacion();
-        Log.e(TAG, "onDestroy");
         super.onDestroy();
         if (mLocationManager != null) {
             for (int i = 0; i < mLocationListeners.length; i++) {
                 try {
                     mLocationManager.removeUpdates(mLocationListeners[i]);
                 } catch (Exception ex) {
-                    Log.i(TAG, "fail to remove location listners, ignore", ex);
+                    ex.printStackTrace();
                 }
             }
         }
     }
+
     private void initializeLocationManager() {
-        Log.e(TAG, "initializeLocationManager");
         if (mLocationManager == null) {
             mLocationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         }
@@ -139,37 +141,71 @@ public class ServicioUbicacion extends Service {
 
     private boolean estaCerca(Location location){
         float [] results= new float [2];
-        for (Ubicacion ub : ubicaciones){
+        Ubicacion ub = obtenerMasCercano(location);
+        if (String.valueOf(ub.getID()) != null){
             distanceBetween(location.getLatitude(), location.getLongitude(), ub.getLatitud(), ub.getLongitud(), results);
             Log.d("Distancia: ", String.valueOf(results[0]));
-            if (results[0]<=100){
-                Log.d("YA LLEGO BITCH!!!","Fuck yeah!");
-                if (!Alarma.getActiva()) {
-                    Intent i = new Intent(this, Alarma.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                }
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String distanciaPreffered = prefs.getString("distancia","150");
+            if (results[0]<=Float.parseFloat(distanciaPreffered) && !seActivoAlarmaYa(ub.getID())){
+                Intent i = new Intent(this, Alarma.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                String datos [] = new String [2];
+                datos[0] = ub.getTitulo();
+                datos[1] = ub.getDireccion();
+                i.putExtra("Titulo", ub.getTitulo());
+                i.putExtra("Direccion", ub.getDireccion());
+                startActivity(i);
+                alarmasActivadas[contAlarma]= ub.getID();
+                contAlarma++;
+                actualizarStatusNotificacion("Se llego a la ubicacion: " + ub.getTitulo());
+            }
+            if (contAlarma == bd.cuentaUbicacionesActivas()){
+                Toast.makeText(getApplicationContext(),"Ya no hay ubicaciones pendientes. Se apagará el servicio.",Toast.LENGTH_LONG).show();
+                onDestroy();
             }
         }
         return true;
     }
 
+    private Ubicacion obtenerMasCercano(Location location){
+        float [] results= new float [2];
+        double distancia = 10000;
+        Ubicacion ubi = new Ubicacion();
+        for(Ubicacion ub : ubicaciones) {
+            distanceBetween(location.getLatitude(), location.getLongitude(), ub.getLatitud(), ub.getLongitud(), results);
+            if (results[0] < distancia){
+                distancia = results[0];
+                ubi = ub;
+            }
+        }
+        return ubi;
+    }
+
+    private boolean seActivoAlarmaYa(int id){
+        for (int i = 0; i < bd.cuentaUbicacionesActivas(); i ++){
+            if (alarmasActivadas[i] == id){
+                return true;
+            }
+        }
+        return false;
+    }
     private void crearNotificacion(){
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setContentTitle("Wake Me App!!")
+                .setContentTitle("Wake Me App!")
                 .setContentText("Midiendo distancias...")
                 .setSmallIcon(R.drawable.ic_launcher2)
                 .setOngoing(true)
                 .setAutoCancel(false);
 
-        Intent intent = new Intent(this, Alarma.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.setAction(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(Alarma.class);
+        stackBuilder.addParentStack(MainActivity.class);
         stackBuilder.addNextIntent(intent);
 
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,  PendingIntent.FLAG_UPDATE_CURRENT);
@@ -185,8 +221,8 @@ public class ServicioUbicacion extends Service {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentText(inString)
-                .setContentTitle("Wake Me App!!")
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("Wake Me App!")
+                .setSmallIcon(R.drawable.ic_launcher2)
                 .setOngoing(true)
                 .setAutoCancel(false);
 

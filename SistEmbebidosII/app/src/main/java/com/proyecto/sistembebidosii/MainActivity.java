@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    Menu menus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        menus = menu;
         Switch swt = (Switch) menu.findItem(R.id.switchOnOff).getActionView().findViewById(R.id.switchForActionBar);
         if(isMyServiceRunning(ServicioUbicacion.class))
             swt.setChecked(true);
@@ -34,7 +35,13 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    empezarServicio(ServicioUbicacion.TAG);
+                    ManejadorBD bd = new ManejadorBD(getApplicationContext());
+                    if (bd.cuentaUbicacionesActivas() > 0) {
+                        empezarServicio(ServicioUbicacion.TAG);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No hay ubicaciones activas.", Toast.LENGTH_SHORT).show();
+                        buttonView.setChecked(false);
+                    }
                 } else {
                     detenerServicio(ServicioUbicacion.TAG);
                 }
@@ -65,9 +72,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void empezarServicio(final String tag){
-        Intent intent = new Intent(getApplicationContext(), ServicioUbicacion.class);
-        intent.addCategory(tag);
-        startService(intent);
+            Intent intent = new Intent(getApplicationContext(), ServicioUbicacion.class);
+            intent.addCategory(tag);
+            startService(intent);
     }
 
     private void detenerServicio(final String tag){

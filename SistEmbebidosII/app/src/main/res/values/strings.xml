@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Wake Me App  !!</string>
+    <string name="app_name">Wake Me App!</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Ajustes</string>
     <string name="button_ajustes">Ajustes</string>
@@ -33,7 +33,7 @@
     <string name="button_aceptar">Aceptar</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="txt_nombreLugar">Nombra la Ubicacion</string>
-    <string name="stop_alarm">Parar Alarma</string>
+    <string name="stop_alarm">Detener Alarma</string>
     <string name="arrived">Haz llegado al destino:</string>
 
 </resources>

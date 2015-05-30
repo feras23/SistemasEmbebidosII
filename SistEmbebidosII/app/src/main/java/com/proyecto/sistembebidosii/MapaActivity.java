@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 import java.util.Locale;
+import static android.location.Location.distanceBetween;
 
 public class MapaActivity extends Activity implements OnMapReadyCallback{
 
@@ -95,17 +96,25 @@ public class MapaActivity extends Activity implements OnMapReadyCallback{
         builder.setCancelable(true);
         builder.setTitle("Confirmar");
         builder.setMessage("¿Está seguro que quiere agregar esta ubicación?");
+
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (nuevoMarker[0] != null)
-                    if (!titulo.getText().equals(null)){
-                        guardarUbicacion(titulo.getText().toString(),Direccion[0],nuevoMarker[0]);
-                        finish();
-                    }
-                    else
+                    if (!titulo.getText().equals(null)) {
+                        if (distanciaUbicaciones(nuevoMarker[0]) == null) {
+                            guardarUbicacion(titulo.getText().toString(), Direccion[0], nuevoMarker[0]);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Se encuentra muy cerca de la ubicación: " + distanciaUbicaciones(nuevoMarker[0]) + ". Favor de elegir otro punto.", Toast.LENGTH_LONG).show();
+                        }
+                        nuevoMarker[0].remove();
+                        btnCancelar.setVisibility(View.INVISIBLE);
+                        btnAceptar.setVisibility(View.INVISIBLE);
+                        titulo.setVisibility(View.INVISIBLE);
+                    } else
                         Toast.makeText(getApplicationContext(),"Debe de ingresar un título.",Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getApplicationContext(),"No se seleccionó ningún lugar. Dar clic en el mapa.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "No se seleccionó ningún lugar. Dar clic en el mapa.", Toast.LENGTH_LONG).show();
                 dialog.cancel();
             }
         });
@@ -122,6 +131,7 @@ public class MapaActivity extends Activity implements OnMapReadyCallback{
                 alert.show();
             }
         });
+
     }
 
     protected void guardarUbicacion(String titulo, String direccion, Marker marker){
@@ -196,7 +206,18 @@ public class MapaActivity extends Activity implements OnMapReadyCallback{
             locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
             return !TextUtils.isEmpty(locationProviders);
         }
+    }
 
-
+    private String distanciaUbicaciones (Marker marker){
+        String nombre = null;
+        float [] results= new float [2];
+        List <Ubicacion> ub = bd.obtenerUbicaciones();
+        for (Ubicacion ubicacion : ub){
+            distanceBetween(marker.getPosition().latitude, marker.getPosition().longitude, ubicacion.getLatitud(), ubicacion.getLongitud(), results);
+            if (results[0] <= 150){
+                nombre = ubicacion.getTitulo();
+            }
+        }
+        return nombre;
     }
 }

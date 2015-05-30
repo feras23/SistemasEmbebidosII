@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="wrap_content" app:clickToClose="true" android:id="@+id/swipe">
 
@@ -37,13 +36,11 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <ToggleButton
+        <Switch
             android:id="@+id/btnToggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textOn="ON "
-            android:textOff="OFF"/>
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <!-- Surface View End -->
 </com.daimajia.swipe.SwipeLayout>

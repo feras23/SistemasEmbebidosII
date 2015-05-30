@@ -1,6 +1,8 @@
 package com.proyecto.sistembebidosii;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,9 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
@@ -60,7 +62,7 @@ public class ListaUbicaciones extends BaseSwipeAdapter implements ListAdapter {
         TextView listItemText = (TextView)view.findViewById(R.id.titUbicacion);
         listItemText.setText(ub.getTitulo());
 
-        ToggleButton btnToggle = (ToggleButton)view.findViewById(R.id.btnToggle);
+        Switch btnToggle = (Switch)view.findViewById(R.id.btnToggle);
         final int activo = ub.getActivo();
         if (activo == 1){
             btnToggle.setChecked(true);
@@ -78,17 +80,32 @@ public class ListaUbicaciones extends BaseSwipeAdapter implements ListAdapter {
             }
         });
         ImageView btnEliminar = (ImageView) view.findViewById(R.id.btnBorrar);
-        btnEliminar.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setTitle("Confirmar");
+        builder.setMessage("¿Esta seguro que desea eliminar esta ubicación?");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
                 if (Eliminar(ub)){
                     Toast.makeText(context,"Se elimino exitosamente.", Toast.LENGTH_LONG).show();
                     list.remove(i);
                     notifyDataSetChanged();
                 }else{
                     Toast.makeText(context,"Ocurrio un error al eliminar.", Toast.LENGTH_LONG).show();
-               }
-
+                }
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        final AlertDialog alert = builder.create();
+        btnEliminar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.show();
             }
         });
     }

@@ -13,6 +13,13 @@
             android:title="Vibrar"
             android:summary="Vibracion cuando suene la alarma" />
 
+        <EditTextPreference
+            android:key="distancia"
+            android:title="Distancia"
+            android:summary="Distancia a la que sonara la alarma"
+            android:defaultValue="200"
+            android:dialogTitle="Escriba la distancia" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
