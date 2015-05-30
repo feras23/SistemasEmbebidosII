@@ -36,12 +36,7 @@
             </intent-filter>
         </activity>
         <service android:name=".ServicioUbicacion" android:process=":servicio_ubicacion"/>
-        <activity
-            android:name=".AjustesActivity"
-            android:label="@string/action_settings"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
-        </activity>
+
         <activity
             android:name=".UbicacionActivity"
             android:label="@string/action_ubicacion"
