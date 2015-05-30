@@ -9,6 +9,7 @@
             android:showDefault="true"
             android:showSilent="true"/>
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="vibrar"
             android:title="Vibrar"
             android:summary="Vibracion cuando suene la alarma" />
